@@ -16,6 +16,12 @@ public class Street
         _num4 = num4;
         _check = check;
     }
+
+    public string GiveNumbers()
+    {
+        return Convert.ToString(_num1) + Convert.ToString(_num2) + Convert.ToString(_num3) + Convert.ToString(_num4) +
+               "[" + Convert.ToString(_check) + "]";
+    }
     
     public static List<Street> StreetListFromStringList(IEnumerable<string> list)
     {
