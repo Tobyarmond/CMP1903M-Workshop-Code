@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CMP1903MWorkshopCode
+﻿namespace CMP1903M_Workshop_Code
 {
     class Program
     {
@@ -10,7 +8,8 @@ namespace CMP1903MWorkshopCode
             //EITHER:
             //Read in the text file if you want (or are able) [HINT: read into a list of strings]
             //Split the first four numbers
-            List<string> streets = new List<string>();
+            //TODO: File currently has to be in bin next to .exe  
+            List<Street> streets = Street.StreetListFromStringList(Read.ReadList("Week 2 Street Codes.txt"));
 
 
 
@@ -23,38 +22,23 @@ namespace CMP1903MWorkshopCode
             int checkSum = 8;
             int total = 1;
             int total2 = 0;
+
+            foreach (Street street in streets)
+            {
+                Console.WriteLine(street.ChecksumStreet());
+            }
           
 
             //Multiply all the numbers together in the 4 digit code (7*7*7*8)
             //Can do it by using the mod '%' operator and the divide '/' operator
             //Reduce streetCode by 1 digit each time through the loop
-            while(streetCode > 0)
-            {
-                
-
-            }
+            
 
 
             //Add the digits of the multiplication total together
             //infinite loop until the total gets to one digit - the checksum
             //Use 'break;' to break out of the loop
-            while (true)
-            {
-                //Do the same as above, adding not multiplying
-                while (total > 0)
-                {
-                    
-
-                }
-
-                //Check if total2 is 2 digits or more
-                //If not, break out of the loop
-                if (total2 > 9) 
-                { 
-                    
-                }
-                else { break; }
-            }
+           
   
             //Check if the final checksum is the same as the checksum in the street code.
             
