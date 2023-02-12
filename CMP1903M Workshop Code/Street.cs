@@ -57,11 +57,9 @@ public class Street
         {
             remainder = multiple % 10;
             add += remainder;
-            //multiple =- remainder;
-            multiple = multiple / 10;
+            multiple /= 10;
         }
         remainder = add % 10;
-        //add -= remainder;
         add /= 10;
         return add + remainder == _check;
     }
