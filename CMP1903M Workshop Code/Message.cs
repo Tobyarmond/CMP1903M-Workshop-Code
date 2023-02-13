@@ -1,36 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CMP1903MWorkshopCode
+﻿namespace CMP1903M_Workshop_Code
 {
-    class Message
+    internal class Message
     {
         //private field
-        private string _message;
+        private IEnumerable<string>? _messages;
+        private string? _singleMessage;
 
-        //public property hiding private field
-        public string message
+        public IEnumerable<string>? Messages
         {
-            get { return _message; }
-            set { _message = value; }
+            get => _messages;
+            set => _messages = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public string? SingleMessage
+        {
+            get => _singleMessage;
+            set => _singleMessage = value ?? throw new ArgumentNullException(nameof(value));
         }
 
         //read the message to encrypt from a file
-        public void readMessageFromFile(string filename)
+        public void ReadMessageFromFile(string filename)
         {
-            //Read text from a file
-            //Could we do this any better?
-            message = File.ReadAllText(filename);
+            Messages = File.ReadLines(filename);
+        }
+
+        public void WriteMessageToFile(string filename)
+        {
+            if (SingleMessage != null) File.WriteAllText(filename, SingleMessage);
         }
 
         //read the message to encrypt from input
-        public void readMessageFromInput()
+        public void ReadMessageFromInput()
         {
             Console.WriteLine("Enter your message to encode...");
-            message = Console.ReadLine();
+            SingleMessage = Console.ReadLine();
         }
     }
 }

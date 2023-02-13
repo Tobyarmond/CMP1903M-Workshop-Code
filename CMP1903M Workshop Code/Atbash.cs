@@ -1,21 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
-namespace CMP1903MWorkshopCode
+namespace CMP1903M_Workshop_Code
 {
-    class Atbash
+    internal static class Atbash
     {
-        public string encode(string text)
+        public static string EncodeLine(string text)
         {
-            return "";
+            string output = "";
+            text = text.ToUpper();
+            for (int i = text.Length-1; i > -1; i--)
+            {
+                output += Convert.ToString(Convert.ToInt32(text[i]));
+            }
+            return output;
         }
 
-        public string decode(string text)
+        public static string DecodeLine(string text)
         {
-            return "";
+            string output = "";
+            int value = 0;
+            for (int i = text.Length -1; i  > -1; i--)
+            {
+                string letter = "";
+                letter += text[i -1];
+                letter += text[i];
+                value = Convert.ToInt32(letter);
+                output += Convert.ToChar(value);
+                i--;
+            }
+            return output;
         }
     }
 }

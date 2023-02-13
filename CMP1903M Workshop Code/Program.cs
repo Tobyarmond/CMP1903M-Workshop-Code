@@ -1,29 +1,27 @@
-﻿using System;
+﻿using System.Reflection.Emit;
+using System.Security.Cryptography;
 
-namespace CMP1903MWorkshopCode
+namespace CMP1903M_Workshop_Code
 {
     class Program
     {
         static void Main(string[] args)
         {
-            //Week 3
-            //Challenge: Get the message from the encrypted text
-            //
-            //1. EITHER:    Read in the .txt file into a List of Strings (or anything else?)
-            //   OR:        Read in each line one at a timen and get its maximum character 
-            //2. For each string:
-            //      Count each character in the string
-            //      The maximum is the character
-            //3. Output the unencrypted message.
-
-            //Week 3
-            //Task 1: create Message object, call the readTextFromInput() method
-            //Task 2: create Atbash object Step 1: pass message to encode() method Step 2: put in the encode logic
-            //Task 3: put in the decode logic to the decode() method, check if it works
-            //Task 4: read text to encode from a file
-
-          
-
+            Message week3 = new Message();
+            // Codes has been placed next to .exe for ease of use
+            week3.ReadMessageFromFile("codes.txt");
+            IEnumerable<string> answer = Occurance.DecodeLines(week3.Messages);
+            foreach (string line in answer)
+            {
+                Console.WriteLine(line);
+            }
+            Console.WriteLine(Atbash.EncodeLine("Cheese"));
+            Console.WriteLine(Atbash.DecodeLine(Atbash.EncodeLine("Quaver")));
+            Message week3Write = new Message();
+            week3Write.ReadMessageFromInput();
+            week3Write.SingleMessage = Atbash.EncodeLine(week3Write.SingleMessage);
+            string dayTime = DateTime.Now.ToString("yyyy-mm-dd-h-m");
+            week3Write.WriteMessageToFile(dayTime+".txt");
         }
     }
 }
